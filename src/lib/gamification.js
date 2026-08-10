@@ -1,4 +1,4 @@
-// --------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 // Sun Points — every value here rewards a *protective* action.
 // Nothing in SunQuest ever awards points for spending more time in the sun.
 // ---------------------------------------------------------------------------
@@ -82,7 +82,7 @@ export const BADGE_DEFS = [
   },
   {
     id: 'shade-master',
-    icon: '��',
+    icon: '🌴',
     name: 'Shade Master',
     detail: 'Took 10 shade breaks',
     goal: 10,
