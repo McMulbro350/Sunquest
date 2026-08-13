@@ -1,3 +1,22 @@
+
+
+/* ---------------------------------------------------------
+   Hourly chart labels — plain HTML row, never stretched
+--------------------------------------------------------- */
+.hourly-labels {
+  display: flex;
+  margin-top: 4px;
+}
+.hourly-labels span {
+  flex: 1;
+  text-align: center;
+  font-size: 10px;
+  color: var(--ink-faint);
+}
+.hourly-labels .hourly-label-peak {
+  color: var(--ink);
+  font-weight: 700;
+}
 /* ---------------------------------------------------------
    SunQuest design tokens
    Palette: bright sky blue + white + soft yellow, summer/beach
