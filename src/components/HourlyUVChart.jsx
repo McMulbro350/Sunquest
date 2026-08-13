@@ -26,48 +26,33 @@ export default function HourlyUVChart({ hourly = [], loading }) {
   return (
     <div className="card">
       <div className="card-title">📈 Hourly Forecast</div>
-      <svg viewBox={`0 0 100 ${chartHeight + 24}`} width="100%" height="150" preserveAspectRatio="none">
-        {hourly.map((h, i) => {
+      <svg viewBox={`0 0 100 ${chartHeight}`} width="100%" height="120" preserveAspectRatio="none">
+        {hourly.map((h) => {
           const barHeight = (h.uv / maxUV) * chartHeight
-          const x = i * barWidth
+          const x = hourly.indexOf(h) * barWidth
           const isPeak = h.hour === peak.hour
           const color = CATEGORY_COLOR[getUVCategory(h.uv).key]
           return (
-            <g key={h.hour}>
-              <rect
-                x={x + barWidth * 0.15}
-                y={chartHeight - barHeight}
-                width={barWidth * 0.7}
-                height={Math.max(barHeight, 2)}
-                rx={1.5}
-                fill={color}
-                opacity={isPeak ? 1 : 0.75}
-              />
-              {isPeak && (
-                <text
-                  x={x + barWidth * 0.5}
-                  y={chartHeight - barHeight - 4}
-                  fontSize="6"
-                  textAnchor="middle"
-                  fill="#1f3a4d"
-                  fontWeight="700"
-                >
-                  {h.uv}
-                </text>
-              )}
-              <text
-                x={x + barWidth * 0.5}
-                y={chartHeight + 14}
-                fontSize="5.5"
-                textAnchor="middle"
-                fill="#93aebb"
-              >
-                {formatHourShort(h.hour)}
-              </text>
-            </g>
+            <rect
+              key={h.hour}
+              x={x + barWidth * 0.15}
+              y={chartHeight - barHeight}
+              width={barWidth * 0.7}
+              height={Math.max(barHeight, 2)}
+              rx={1.5}
+              fill={color}
+              opacity={isPeak ? 1 : 0.75}
+            />
           )
         })}
       </svg>
+      <div className="hourly-labels">
+        {hourly.map((h) => (
+          <span key={h.hour} className={h.hour === peak.hour ? 'hourly-label-peak' : ''}>
+            {formatHourShort(h.hour)}
+          </span>
+        ))}
+      </div>
       <p className="card-sub mt-8">
         Peak UV around <strong>{formatHourShort(peak.hour)}</strong> — that's the best time to plan
         shade breaks.
